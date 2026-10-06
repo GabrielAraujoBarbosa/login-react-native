@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { signOut } from 'firebase/auth';
 
 import AppNavigator from './src/navigation/AppNavigator';
+import { auth } from './src/firebase';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,7 +11,8 @@ export default function App() {
     setIsLoggedIn(true);
   }
 
-  function handleLogout() {
+  async function handleLogout() {
+    await signOut(auth);
     setIsLoggedIn(false);
   }
 
